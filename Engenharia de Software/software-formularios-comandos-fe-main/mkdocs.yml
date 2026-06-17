@@ -1,0 +1,25 @@
+site_name: Comandos FE
+site_description: Documentação técnica do sistema de gestão de riscos Comandos FE.
+site_author: CTISM / Comandos FE
+
+theme:
+  name: readthedocs
+  language: pt
+
+nav:
+  - Início: index.md
+  - Como Executar: instalacao.md
+  - Arquitetura: arquitetura.md
+  - Autenticação e Permissões: autenticacao-permissoes.md
+  - Módulos do Sistema: modulos.md
+  - Modelo de Dados: modelo-dados.md
+  - Testes e Qualidade: testes-qualidade.md
+  - Telas e Design: design/index.md
+  - Melhorias Futuras: melhorias.md
+
+markdown_extensions:
+  - admonition
+  - fenced_code
+  - tables
+  - toc:
+      permalink: true

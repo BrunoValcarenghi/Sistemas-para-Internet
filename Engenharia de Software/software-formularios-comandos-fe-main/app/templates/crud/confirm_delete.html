@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="page-head form-page-head">
+    <div>
+        <h1>{{ page_title }}</h1>
+        {% if page_description %}
+        <p class="muted">{{ page_description }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<section class="form-card delete-card">
+    <p>Confirmar exclusão de <strong>{{ object }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions form-actions-right">
+            <a class="btn btn-secondary" href="{{ cancel_url|default:'javascript:history.back()' }}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Cancelar</a>
+            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash-can" aria-hidden="true"></i>{{ delete_label|default:"Excluir" }}</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

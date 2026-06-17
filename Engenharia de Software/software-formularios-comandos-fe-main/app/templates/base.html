@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Comandos FE{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% block body %}
+    <div class="shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">
+                    <img class="brand-sidebar-logo" src="{% static 'assets/logo-comandos-fe-transparent.png' %}" alt="Comandos FE">
+                </div>
+            </div>
+            <nav class="nav-links">
+                <div class="nav-section-title">Principal</div>
+                <a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'index' %}">
+                    <i class="nav-link-icon fa-solid fa-house" aria-hidden="true"></i>
+                    <span class="nav-link-text">Página Inicial</span>
+                </a>
+                {% if request.perms_context.is_admin %}
+                <div class="nav-section-title">Gerenciamento</div>
+                <a class="{% if '/riscos/' in request.path %}active{% endif %}" href="{% url 'risco-list' %}">
+                    <i class="nav-link-icon fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <span class="nav-link-text">Riscos</span>
+                </a>
+                <a class="{% if request.path == '/unidades/' %}active{% endif %}" href="{% url 'unidade-list' %}">
+                    <i class="nav-link-icon fa-solid fa-building" aria-hidden="true"></i>
+                    <span class="nav-link-text">Unidades</span>
+                </a>
+                <a class="{% if request.path == '/usuarios/' %}active{% endif %}" href="{% url 'usuario-list' %}">
+                    <i class="nav-link-icon fa-solid fa-users" aria-hidden="true"></i>
+                    <span class="nav-link-text">Usuários</span>
+                </a>
+                {% elif request.perms_context.can_access_risks %}
+                <div class="nav-section-title">Gerenciamento</div>
+                <a class="{% if '/riscos/' in request.path %}active{% endif %}" href="{% url 'risco-list' %}">
+                    <i class="nav-link-icon fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <span class="nav-link-text">Riscos</span>
+                </a>
+                {% endif %}
+            </nav>
+            <div class="sidebar-spacer"></div>
+            <button class="sidebar-logout-trigger" type="button" data-open-logout-modal>Sair</button>
+            <form id="logout-form" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+            </form>
+        </aside>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <div class="modal-backdrop" data-logout-modal hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="logout-modal-title">
+            <h2 id="logout-modal-title">Sair do sistema?</h2>
+            <p>Você vai encerrar sua sessão atual.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" type="button" data-close-logout-modal>Cancelar</button>
+                <button class="btn btn-primary" type="submit" form="logout-form">Sair</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (() => {
+            const modal = document.querySelector("[data-logout-modal]");
+            const openButton = document.querySelector("[data-open-logout-modal]");
+            const closeButton = document.querySelector("[data-close-logout-modal]");
+
+            if (!modal || !openButton || !closeButton) {
+                return;
+            }
+
+            const openModal = () => {
+                modal.hidden = false;
+                closeButton.focus();
+            };
+
+            const closeModal = () => {
+                modal.hidden = true;
+                openButton.focus();
+            };
+
+            openButton.addEventListener("click", openModal);
+            closeButton.addEventListener("click", closeModal);
+            modal.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape" && !modal.hidden) {
+                    closeModal();
+                }
+            });
+        })();
+    </script>
+    {% endblock %}
+</body>
+</html>
