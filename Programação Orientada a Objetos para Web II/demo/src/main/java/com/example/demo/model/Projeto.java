@@ -19,9 +19,15 @@ public class Projeto {
 
     private UUID uuid = UUID.randomUUID();
 
-    @Column(nullable = false, length = 150)
     private String titulo;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
     private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name = "avaliador_id")
+    private Avaliador avaliador;
 }

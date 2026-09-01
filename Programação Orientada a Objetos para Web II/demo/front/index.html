@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliador de Projetos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>PROGRAMAÇÃO ORIENTADA A OBJETOS PARA WEB II</h1>
+<h2>Bruno Valcarenghi Machado</h2>
+
+<nav>
+    <button onclick="mostrarAba('alunos')">Alunos</button>
+    <button onclick="mostrarAba('avaliadores')">Avaliadores</button>
+    <button onclick="mostrarAba('projetos')">Projetos</button>
+</nav>
+
+<section id="aba-alunos" class="aba active">
+    <h2>Gerenciar Alunos</h2>
+    <form id="form-aluno">
+        <input type="text" id="aluno-nome" placeholder="Nome do Aluno" required>
+        <input type="text" id="aluno-matricula" placeholder="Matrícula" required>
+        <input type="email" id="aluno-email" placeholder="E-mail" required>
+        <button type="submit">Cadastrar Aluno</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-alunos"></tbody>
+    </table>
+</section>
+
+<section id="aba-avaliadores" class="aba">
+    <h2>Gerenciar Avaliadores</h2>
+    <form id="form-avaliador">
+        <input type="text" id="avaliador-nome" placeholder="Nome do Avaliador" required>
+        <input type="text" id="avaliador-especialidade" placeholder="Especialidade" required>
+        <button type="submit">Cadastrar Avaliador</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Especialidade</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-avaliadores"></tbody>
+    </table>
+</section>
+
+<section id="aba-projetos" class="aba">
+    <h2>Gerenciar Projetos</h2>
+    <form id="form-projeto">
+        <input type="text" id="projeto-titulo" placeholder="Título do Projeto" required>
+        <textarea id="projeto-descricao" placeholder="Descrição do Projeto" required></textarea>
+
+        <select id="select-aluno" required>
+            <option value="">Selecione um Aluno...</option>
+        </select>
+
+        <select id="select-avaliador" required>
+            <option value="">Selecione um Avaliador...</option>
+        </select>
+
+        <button type="submit">Cadastrar Projeto</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Aluno</th>
+            <th>Avaliador</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-projetos"></tbody>
+    </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

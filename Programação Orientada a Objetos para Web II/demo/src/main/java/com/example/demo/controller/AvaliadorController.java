@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/avaliadores")
+@CrossOrigin(origins = "*")
 public class AvaliadorController {
 
     private final AvaliadorService service;
