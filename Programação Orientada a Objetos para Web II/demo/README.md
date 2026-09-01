@@ -25,12 +25,36 @@ requisições HTTP da aplicação.
 
 ## Funcionalidades da API
 
-***Criar (POST):*** Recebe os dados e cadastra um novo registro no sistema.
+* ***Criar (POST):*** Recebe os dados e cadastra um novo registro no sistema.
 
-***Listar (GET):*** Retorna uma lista com todos os registros cadastrados.
+* ***Listar (GET):*** Retorna uma lista com todos os registros cadastrados.
 
-***Buscar por UUID (GET /{uuid}):*** Localiza e retorna os dados de um 
+* ***Buscar por UUID (GET /{uuid}):*** Localiza e retorna os dados de um 
 registro específico pelo seu UUID.
 
-***Deletar (DELETE /{uuid}):*** Remove um registro do banco de dados 
+* ***Deletar (DELETE /{uuid}):*** Remove um registro do banco de dados 
 utilizando seu UUID.
+
+## Dependências Utilizadas
+
+* ***Spring Web MVC***: Responsável pela criação dos endpoints REST e 
+processamento das requisições HTTP.
+
+* ***Spring Data JPA***: Abstração da camada de persistência 
+para comunicação e operações no banco de dados.
+
+* ***PostgreSQL Driver***: Driver para conexão entre a 
+aplicação Java e o banco de dados PostgreSQL.
+
+* ***Flyway***: Gerenciamento de versionamento do 
+banco e execução automatizada das migrações SQL.
+
+* ***Flyway PostgreSQL***: Suporte específico do 
+Flyway para integração com a base PostgreSQL.
+
+* ***Springdoc OpenAPI (Swagger UI)***: Gerador da 
+interface interativa para documentação e teste 
+das rotas no navegador.
+
+* ***Lombok***: Biblioteca para redução de código
+repetitivo através de anotações (getters, setters, etc.).
