@@ -22,7 +22,7 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sala")
     @Schema(description = "Id unico de cada sala")
-    private int idSala;
+    private Integer idSala;
 
     @NotBlank
     @Size(min = 3, max = 50, message = "Deve conter entre 3 e 50 caracteres")
